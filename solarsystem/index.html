@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solar System</title>
+    <meta name="description" content="Solar System | Naomi Winter" />
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="aframe-star-system-component-master/index.js"></script>
+    <!--<script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>-->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="js/aframe-extras.controls.min.js"></script>
+  </head>
+  <body>
+    <!--Scale -->
+    <a-text id="label" position="-1.728 2.195 3.730" value="linear"></a-text>
+      
+    <!--Assets-->
+    <a-assets>
+      <img id="earth-texture" src="assets/earth.jpg">
+    </a-assets>
+
+    <a-scene>
+
+         <!--Camera position and rotation-->
+    <a-entity camera look-controls position="0 5 25"></a-entity>
+
+      <!--Starry background-->
+      <a-sky color="black"> </a-sky>
+      <a-entity star-system></a-entity>
+
+      <!--Earth-->
+      <a-entity position="0 0 -5">
+        <a-entity id="test-ring">
+          <a-sphere
+            id="Earth"
+            position="0 0 0"
+            radius="4"
+            src="#earth-texture"
+            ;
+          >
+          </a-sphere>
+        <!--Mars-->
+        </a-entity>
+        <a-sphere id="Mars" position="13 1 -15" color="orange" radius="2";>
+        </a-sphere>
+      </a-entity>
+    </a-scene>
+
+    <!--Link to Glitch page for remix-->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
