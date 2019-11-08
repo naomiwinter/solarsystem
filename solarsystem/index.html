@@ -1,67 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Solar System</title>
-    <meta name="description" content="Solar System | Naomi Winter" />
-    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
-    <script src="aframe-star-system-component-master/index.js"></script>
-    <!--<script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>-->
-    <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
-    <script src="js/aframe-extras.controls.min.js"></script>
-<script>
-// Registering component in foo-component.js
-AFRAME.registerComponent("y-rotation", {
-  schema: {
-    speed: {
-      default: 0.01
-    },
-  },
-  tick: function () {
-    // Radians
-    this.el.object3D.rotation.y += this.data.speed;
-  }
-});
-</script>
 
-  </head>
-  <body>
+<head>
+  <title>Solar System</title>
+  <meta name="description" content="Solar System | Naomi Winter" />
+  <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+  <script src="aframe-star-system-component-master/index.js"></script>
+  <!--<script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>-->
+  <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+  <script src="js/aframe-extras.controls.min.js"></script>
+  <script>
+    // Registering component in foo-component.js
+    AFRAME.registerComponent("y-rotation", {
+      schema: {
+        speed: {
+          default: 0.01
+        },
+      },
+      tick: function () {
+        // Radians
+        this.el.object3D.rotation.y += this.data.speed;
+      }
+    });
+  </script>
 
-    <a-scene>
-          <!--Assets-->
+</head>
+
+<body>
+
+  <a-scene>
+    <!--Assets-->
     <a-assets>
-        <img id="earth-texture" src="assets/earth.jpg">
-        <img id="mars-texture" src="assets/mars.jpg">
-      </a-assets>
+      <img id="sun-texture" src="assets/sun.jpg">
+      <img id="mercury-texture" src="assets/mercury.png">
+      <img id="venus-texture" src="assets/venus.jpg">
+      <img id="earth-texture" src="assets/earth.jpg">
+      <img id="mars-texture" src="assets/mars.jpg">
+      <img id="asteroid-texture" src="assets/asteroid.jpg">
+      <img id="jupiter-texture" src="assets/jupiter.jpg">
+      <img id="saturn-texture" src="assets/saturn.jpg">
+      <img id="uranus-texture" src="assets/uranus.jpg">
+      <img id="neptune-texture" src="assets/neptune.jpg">
+    </a-assets>
+    </a-assets>
 
-         <!--Camera position and rotation-->
-    <a-entity camera look-controls position="0 5 20" wasd-controls></a-entity>
+    <!--Camera position and rotation-->
+    <a-entity camera look-controls position="0 7 40" wasd-controls></a-entity>
 
-      <!--Starry background-->
-      <a-sky color="black"> </a-sky>
-      <a-entity star-system></a-entity>
+    <!--Starry background-->
+    <a-sky color="black"> </a-sky>
+    <a-entity star-system></a-entity>
 
-      <!-- Sun -->
+    <!-- Sun -->
+    <a-entity position="-100 0 0">
+      <a-sphere y-rotation="speed:0.001" id="Sun" src="#sun-texture" radius="50" ;>
+      </a-sphere>
+    </a-entity>
 
-    
-      <!--Earth-->
-      <a-entity position="0 0 -5">
-                  <a-sphere y-rotation="speed:0.01"
-            id="Earth"
-            position="0 0 0"
-            radius="4"
-            src="#earth-texture";
-          >
-          </a-sphere>
-        <!--Mars-->
-        </a-entity>
-        <a-sphere y-rotation="speed:0.05"
-        id="Mars"
-        src="#mars-texture"
-        position="13 1 -15"
-        radius="2";>
+    <!-- Mercury -->
+    <a-entity position="-50 0 0">
+        <a-sphere y-rotation="speed:0.02" id="Mercury" src="#mercury-texture" radius="4" ;>
         </a-sphere>
       </a-entity>
-    </a-scene>
 
-  </body>
+    <!-- Venus -->
+    <a-entity position="-40 0 0">
+        <a-sphere y-rotation="speed:0.02" id="Venus" src="#venus-texture" radius="6" ;>
+        </a-sphere>
+      </a-entity>
+
+    <!--Earth-->
+    <a-entity position="-30 0 0">
+      <a-sphere y-rotation="speed:0.02" id="Earth" src="#earth-texture" radius="4" ;>
+      </a-sphere>
+    </a-entity>
+
+      <!--Mars-->
+    <a-entity position="-20 0 0 ">
+    <a-sphere y-rotation="speed:0.05" id="Mars" src="#mars-texture" radius="2" ;>
+    </a-sphere>
+    </a-entity>
+
+    <!-- Asteroid -->
+    <a-entity position="0 0 0">
+      <a-dodecahedron id="asteroid" src="#asteroid-texture" radius="2">
+      </a-dodecahedron>
+    </a-entity>
+
+    <!-- Jupiter -->
+    <a-entity position="20 0 0">
+      <a-sphere y-rotation="speed:0.05" id="Jupiter" src="#jupiter-texture" radius="10";>
+      </a-sphere>
+      </a-entity>
+
+    <!-- Saturn -->
+    <a-entity position="50 0 0">
+      <a-sphere y-rotation="speed:0.05" id="Saturn" src="#saturn-texture" radius="8";>
+      </a-sphere>
+      </a-entity>
+
+    <!-- Uranus -->
+    <a-entity position="60 0 0">
+      <a-sphere y-rotaton="speed:0.05" id="Uranus" src="#uranus-texture" radius="2";>
+      </a-sphere>
+      </a-entity>
+
+    <!-- Neptune -->
+    <a-entity position="70 0 0">
+      <a-sphere y-rotation="speed:0.05" id="Neptune" src="#neptune-texture" radius="2";>
+      </a-sphere>
+      </a-entity>
+
+    <!-- Pluto -->
+    <a-entity position="90 0 0">
+      <a-sphere y-rotation="speed:0.05" id="Pluto" src="#pluto-texture" radius="2" ;>
+      </a-sphere>
+      </a-entity>
+  </a-scene>
+
+</body>
+
 </html>
