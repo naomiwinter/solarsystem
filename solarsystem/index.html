@@ -23,16 +23,22 @@
       }
     });
 
-    //Rotation around the sun
-    AFRAME.registerComponent("sun-rotation", {
+    // Move around the sun
+    AFRAME.registerComponent("sun-orbit", {
       schema: {
         speed: {
           default: 0.01
         },
       },
+      init: function () {
+        this.sun = this.el.sceneEl.querySelector("#sun");
+
+      },
       tick: function () {
         // Radians
-        this.el.object3D.rotation.y += this.data.speed;
+        this.el.object3D.position.sub(this.sun.object3D.position); // remove the offset
+        this.el.object3D.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.data.speed); // rotate the POSITION
+        this.el.object3D.position.add(this.sun.object3D.position); // re-add the offset
       }
     });
   </script>
@@ -60,7 +66,8 @@
 
     <!--Camera position and rotation-->
     <!-- <a-entity camera look-controls position="0 7 40" wasd-controls ></a-entity>-->
-    <a-entity camera look-controls wasd-controls orbit-controls="target: 0 1.6 -0.5;  initialPosition: -5 5 20"></a-entity>
+    <a-entity camera look-controls wasd-controls orbit-controls="target: 0 1.6 -0.5;  initialPosition: -5 5 250">
+    </a-entity>
 
 
     <!--Starry background-->
@@ -68,67 +75,67 @@
     <a-entity star-system></a-entity>
 
     <!-- Sun -->
-    <a-entity id="Sun" position="-150 0 0">
-      <a-sphere y-rotation="speed:0.001" id="Sun" src="#sun-texture" radius="80">
+    <a-entity id="sun" position="0 0 0">
+      <a-sphere y-rotation="speed:0.001" id="Sun" src="#sun-texture" radius="50">
       </a-sphere>
     </a-entity>
 
     <!-- Mercury -->
-    <a-entity position="-50 0 0">
+    <a-entity sun-orbit="speed:0.0160" position="52.06 0 0" rotation="0 0 2">
       <a-sphere y-rotation="speed:0.02" id="Mercury" src="#mercury-texture" radius="1">
       </a-sphere>
     </a-entity>
 
     <!-- Venus -->
-    <a-entity position="-38 0 0">
+    <a-entity sun-orbit="speed:0.0117" position="98.64 0 0" rotation="0 0 3">
       <a-sphere y-rotation="speed:0.02" id="Venus" src="#venus-texture" radius="3">
       </a-sphere>
     </a-entity>
 
     <!--Earth-->
-    <a-entity position="-25 0 0">
+    <a-entity sun-orbit="speed:0.01"position="137 0 0" rotation="0 0 23.4">
       <a-sphere y-rotation="speed:0.02" id="Earth" src="#earth-texture" radius="3">
       </a-sphere>
     </a-entity>
 
     <!--Mars-->
-    <a-entity position="-15 0 0 ">
+    <a-entity sun-orbit="speed: 0.0080" position="208.24 0 0" rotation="0 0 25">
       <a-sphere y-rotation="speed:0.05" id="Mars" src="#mars-texture" radius="1.5">
       </a-sphere>
     </a-entity>
 
     <!-- Asteroid -->
-    <a-entity position="0 0 0">
+    <a-entity position="162 0 0">
       <a-dodecahedron id="asteroid" src="#asteroid-texture" radius="2">
       </a-dodecahedron>
     </a-entity>
 
     <!-- Jupiter -->
-    <a-entity position="20 0 0">
+    <a-entity sun-orbit="speed:0.0043" position="712.4 0 0" rotation="0 0 3">
       <a-sphere y-rotation="speed:0.05" id="Jupiter" src="#jupiter-texture" radius="10">
       </a-sphere>
     </a-entity>
 
     <!-- Saturn -->
-    <a-entity position="50 0 0">
+    <a-entity sun-orbit="speed:0.0032" position="1312.46 0 0" rotation="0 0 26.7">
       <a-sphere y-rotation="speed:0.05" id="Saturn" src="#saturn-texture" radius="3">
       </a-sphere>
     </a-entity>
 
     <!-- Uranus -->
-    <a-entity position="60 0 0">
+    <a-entity sun-orbit="speed:0.0022" position="2629.03 0 0" rotation="0 0 97.8">
       <a-sphere y-rotaton="speed:0.05" id="Uranus" src="#uranus-texture" radius="2">
       </a-sphere>
     </a-entity>
 
     <!-- Neptune -->
-    <a-entity position="70 0 0">
+    <a-entity sun-orbit="speed:0.0018" position="41115.48 0 0" rotation="0 0 28">
       <a-sphere y-rotation="speed:0.05" id="Neptune" src="#neptune-texture" radius="2">
       </a-sphere>
     </a-entity>
 
-    <!-- Pluto -->
-    <a-entity position="90 0 0">
+    <!-- Pluto
+    <a-entity sun-orbit="speed:0.009" position="252 0 0" rotation="0 0 57">
       <a-sphere y-rotation="speed:0.05" id="Pluto" src="#pluto-texture" radius="2">
       </a-sphere>
     </a-entity>
