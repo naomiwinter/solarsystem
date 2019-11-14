@@ -21,7 +21,7 @@ AFRAME.registerComponent('star-system', {
     },
     depth: {
       type: 'number',
-      default: 300,
+      default: 3000,
       min: 0,
     },
     size: {
