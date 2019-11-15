@@ -3,7 +3,8 @@
 
 <head>
   <title>Solar System</title>
-  <meta name="description" content="Solar System | Naomi Winter" />
+  <meta name="Naomi Winter's Solar System" content="Solar System | Naomi Winter" />
+  <link rel="stylesheet" href="stylesheet.css">
   <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
   <script src="aframe-star-system-component-master/index.js"></script>
   <script src="js/aframe-extras.controls.min.js"></script>
@@ -42,10 +43,17 @@
       }
     });
   </script>
-
 </head>
 
 <body>
+
+  <a-entity gearvr-controls></a-entity>
+
+  <!-- Menu options
+  <div class="topnav">
+    <a class="active" href="#start">Start</a>
+    <a href="#mercury">Mercury</a>
+  </div>-->
 
   <a-scene>
     <!--Assets-->
@@ -64,40 +72,55 @@
     </a-assets>
     </a-assets>
 
-    <!--Camera position and rotation-->
-    <!-- <a-entity camera look-controls position="0 7 40" wasd-controls ></a-entity>-->
-    <a-entity camera look-controls wasd-controls orbit-controls="target: 0 1.6 -0.5;  initialPosition: -5 5 250">
-    </a-entity>
 
+    <!--Camera position and rotation-->
+    <a-entity camera look-controls wasd-controls orbit-controls="target: 0 1.6 -0.5;  initialPosition: -5 50 300">
+      </a-entity>
 
     <!--Starry background-->
     <a-sky color="black"> </a-sky>
     <a-entity star-system></a-entity>
 
+    <!-- God light -->
+    <a-entity light="type: ambient; color: #CCC; intensity: 0.5"></a-entity>
+
     <!-- Sun -->
     <a-entity id="sun" position="0 0 0">
-      <a-sphere y-rotation="speed:0.001" id="Sun" src="#sun-texture" radius="50">
+      <a-sphere y-rotation="speed:0.001" id="Sun" src="#sun-texture" radius="40" light="type: point"
+        material="shader:flat">
       </a-sphere>
     </a-entity>
 
+    <!-- Mercury's orbit -->
+    <a-entity geometry="primitive: torus; radius: 52.06; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!-- Mercury -->
     <a-entity sun-orbit="speed:0.0160" position="52.06 0 0" rotation="0 0 2">
       <a-sphere y-rotation="speed:0.02" id="Mercury" src="#mercury-texture" radius="1">
       </a-sphere>
     </a-entity>
 
+    <!-- Venus' orbit -->
+    <a-entity geometry="primitive: torus; radius: 98.64; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!-- Venus -->
     <a-entity sun-orbit="speed:0.0117" position="98.64 0 0" rotation="0 0 3">
       <a-sphere y-rotation="speed:0.02" id="Venus" src="#venus-texture" radius="3">
       </a-sphere>
     </a-entity>
 
-    <!--Earth-->
-    <a-entity sun-orbit="speed:0.01"position="137 0 0" rotation="0 0 23.4">
+    <!--Earth's orbit-->
+    <a-entity geometry="primitive: torus; radius: 137; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
+    <!-- Earth -->
+    <a-entity sun-orbit="speed:0.01" position="137 0 0" rotation="0 0 23.4">
       <a-sphere y-rotation="speed:0.02" id="Earth" src="#earth-texture" radius="3">
       </a-sphere>
     </a-entity>
 
+    <!-- Mars' orbit -->
+    <a-entity geometry="primitive: torus; radius: 208.24; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!--Mars-->
     <a-entity sun-orbit="speed: 0.0080" position="208.24 0 0" rotation="0 0 25">
       <a-sphere y-rotation="speed:0.05" id="Mars" src="#mars-texture" radius="1.5">
@@ -110,27 +133,39 @@
       </a-dodecahedron>
     </a-entity>
 
+    <!-- Jupiter's orbit -->
+    <a-entity geometry="primitive: torus; radius: 712.4; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!-- Jupiter -->
     <a-entity sun-orbit="speed:0.0043" position="712.4 0 0" rotation="0 0 3">
-      <a-sphere y-rotation="speed:0.05" id="Jupiter" src="#jupiter-texture" radius="10">
+      <a-sphere y-rotation="speed:0.05" id="Jupiter" src="#jupiter-texture" radius="30">
       </a-sphere>
     </a-entity>
 
+    <!-- Saturn's orbit -->
+    <a-entity geometry="primitive: torus; radius: 1312.46; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!-- Saturn -->
     <a-entity sun-orbit="speed:0.0032" position="1312.46 0 0" rotation="0 0 26.7">
-      <a-sphere y-rotation="speed:0.05" id="Saturn" src="#saturn-texture" radius="3">
+      <a-sphere y-rotation="speed:0.05" id="Saturn" src="#saturn-texture" radius="25">
       </a-sphere>
     </a-entity>
 
+    <!-- Uranus's orbit -->
+    <a-entity geometry="primitive: torus; radius: 2629.03; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!-- Uranus -->
     <a-entity sun-orbit="speed:0.0022" position="2629.03 0 0" rotation="0 0 97.8">
-      <a-sphere y-rotaton="speed:0.05" id="Uranus" src="#uranus-texture" radius="2">
+      <a-sphere y-rotaton="speed:0.05" id="Uranus" src="#uranus-texture" radius="10">
       </a-sphere>
     </a-entity>
 
+    <!-- Neptune's orbit -->
+    <a-entity geometry="primitive: torus; radius: 41115.48; radiusTubular: 0.2;segmentsTubular: 50" material="color: #FFFFFF; opacity: 0.3"
+    rotation="90 0 0" scale="1 1 1"></a-entity>
     <!-- Neptune -->
     <a-entity sun-orbit="speed:0.0018" position="41115.48 0 0" rotation="0 0 28">
-      <a-sphere y-rotation="speed:0.05" id="Neptune" src="#neptune-texture" radius="2">
+      <a-sphere y-rotation="speed:0.05" id="Neptune" src="#neptune-texture" radius="10">
       </a-sphere>
     </a-entity>
 
